@@ -150,6 +150,7 @@ nav.addEventListener('mouseout', handlehover.bind(1.0));
 // });
 
 //Sticky Navigation: Intersection Observer API
+
 // const obsCallback = function (entries, observer) {
 //   entries.forEach(entry => console.log(entry));
 // };
@@ -178,3 +179,25 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+
+//Reveal Sections
+
+const AllSections = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+AllSections.forEach(section => {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
