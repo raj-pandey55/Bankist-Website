@@ -58,22 +58,38 @@ btnScrollTo.addEventListener('click', function () {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-const navFeatures = document.querySelector('.nav--features');
+// //////////////////
+// PAGE NAVIGATION
 
-navFeatures.addEventListener('click', function () {
-  section1.scrollIntoView({ behavior: 'smooth' });
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  // Matching Strategy
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 });
 
-const navOperations = document.querySelector('.nav--operations');
-const section2 = document.querySelector('#section--2');
+// const navFeatures = document.querySelector('.nav--features');
 
-navOperations.addEventListener('click', function () {
-  section2.scrollIntoView({ behavior: 'smooth' });
-});
+// navFeatures.addEventListener('click', function () {
+//   section1.scrollIntoView({ behavior: 'smooth' });
+// });
 
-const navTestimonials = document.querySelector('.nav--testimonials');
-const section3 = document.querySelector('#section--3');
+// const navOperations = document.querySelector('.nav--operations');
+// const section2 = document.querySelector('#section--2');
 
-navTestimonials.addEventListener('click', function () {
-  section3.scrollIntoView({ behavior: 'smooth' });
-});
+// navOperations.addEventListener('click', function () {
+//   section2.scrollIntoView({ behavior: 'smooth' });
+// });
+
+// const navTestimonials = document.querySelector('.nav--testimonials');
+// const section3 = document.querySelector('#section--3');
+
+// navTestimonials.addEventListener('click', function () {
+//   section3.scrollIntoView({ behavior: 'smooth' });
+// });
