@@ -228,3 +228,40 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
+
+//Sliding testimonials
+
+const slide = document.querySelectorAll('.slide');
+const slider = document.querySelector('.slider');
+
+slide.forEach((s, i) => {
+  s.style.transform = `translateX(${100 * i}%)`;
+  s.style.overflow = 'visible';
+});
+
+const maxLength = slide.length;
+
+const btnRight = document.querySelector('.slider__btn--right');
+let count = 0;
+btnRight.addEventListener('click', function () {
+  if (count == maxLength - 1) count = 0;
+  else count++;
+
+  slide.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - count)}%)`;
+    s.style.overflow = 'visible';
+  });
+});
+
+const btnLeft = document.querySelector('.slider__btn--left');
+
+btnLeft.addEventListener('click', function () {
+  if (count == 0) count = maxLength - 1;
+  else count--;
+
+  slide.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - count)}%)`;
+
+    s.style.overflow = 'visible';
+  });
+});
